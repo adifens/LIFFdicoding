@@ -1,7 +1,7 @@
 function loadCatatan() {
     if (localStorage.list_data && localStorage.id_data) {
         list_data = JSON.parse(localStorage.getItem('list_data'));
-        var data_app = "";
+        var data_app = "1653673052-JgXBZPDv";
         if (list_data.length > 0) {
             data_app = '<table class="table table-striped table-dark">';
             data_app += '<thead>' +
@@ -29,8 +29,7 @@ function loadCatatan() {
 
             data_app += '</tbody></table>';
 
-        }
-        else {
+        } else {
             data_app = "Catatan masih kosong nih";
         }
 
@@ -90,9 +89,9 @@ function simpanData() {
         liff.sendMessages([{
             'type': 'text',
             'text': "Catatan baru berhasil disimpan"
-        }]).then(function() {
+        }]).then(function () {
             alert('Catatan Tersimpan');
-        }).catch(function(error) {
+        }).catch(function (error) {
             alert('Aduh kok error ya...');
         });
     }
@@ -104,14 +103,18 @@ function simpanData() {
     if (localStorage.list_data && localStorage.id_data) {
         list_data = JSON.parse(localStorage.getItem('list_data'));
         id_data = parseInt(localStorage.getItem('id_data'));
-    }
-    else {
+    } else {
         list_data = [];
         id_data = 0;
     }
 
     id_data++;
-    list_data.push({ 'id_data': id_data, 'nama': nama, 'tanggal': tanggal, 'agenda': agenda });
+    list_data.push({
+        'id_data': id_data,
+        'nama': nama,
+        'tanggal': tanggal,
+        'agenda': agenda
+    });
     localStorage.setItem('list_data', JSON.stringify(list_data));
     localStorage.setItem('id_data', id_data);
     document.getElementById('form-data').reset();
@@ -128,9 +131,9 @@ function simpanEditData() {
         liff.sendMessages([{
             'type': 'text',
             'text': "Catatan yang diedit sudah tersimpan"
-        }]).then(function() {
+        }]).then(function () {
             alert('Catatan tersimpan');
-        }).catch(function(error) {
+        }).catch(function (error) {
             alert('Aduh kok error ya...');
         });
     }
@@ -140,7 +143,12 @@ function simpanEditData() {
     tanggal = $('#etanggal').val();
     agenda = $('#eagenda').val();
 
-    list_data.push({ 'id_data': id_data, 'nama': nama, 'tanggal': tanggal, 'agenda': agenda });
+    list_data.push({
+        'id_data': id_data,
+        'nama': nama,
+        'tanggal': tanggal,
+        'agenda': agenda
+    });
     localStorage.setItem('list_data', JSON.stringify(list_data));
     document.getElementById('eform-data').reset();
     gantiMenu('list-catatan');
@@ -156,9 +164,9 @@ function hapusData(id) {
         liff.sendMessages([{
             'type': 'text',
             'text': "Catatan sudah terhapus"
-        }]).then(function() {
+        }]).then(function () {
             alert('Catatan sudah dihapus');
-        }).catch(function(error) {
+        }).catch(function (error) {
             alert('Aduh kok nggak bisa');
         });
     }
@@ -187,8 +195,7 @@ function gantiMenu(menu) {
         $('#list-catatan').fadeIn();
         $('#edit-data').hide();
         $('#lihat-data').hide();
-    }
-    else if (menu == "tambah-catatan") {
+    } else if (menu == "tambah-catatan") {
         $('#tambah-catatan').fadeIn();
         $('#list-catatan').hide();
         $('#edit-data').hide();
