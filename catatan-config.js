@@ -1,7 +1,7 @@
 function loadCatatan() {
     if (localStorage.list_data && localStorage.id_data) {
         list_data = JSON.parse(localStorage.getItem('list_data'));
-        var data_app = "1653673052-JgXBZPDv";
+        var data_app = "";
         if (list_data.length > 0) {
             data_app = '<table class="table table-striped table-dark">';
             data_app += '<thead>' +
